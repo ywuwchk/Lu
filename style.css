@@ -38,7 +38,10 @@ form {
 label {
   font-weight: bold;
 }
-
+p{
+  font-size: 24px
+  color: black;
+}
 input[type="text"] {
   width: 380px;
   padding: 10px;
