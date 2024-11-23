@@ -39,9 +39,9 @@ label {
   font-weight: bold;
 }
 p{
-  font-size: 36px
+  font-size: 100px
   color: black;
-  font-weight: bold;
+ 
 }
 input[type="text"] {
   width: 380px;
