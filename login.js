@@ -2,16 +2,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginButton = document.getElementById('login-button');
 
   loginButton.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-    
-    // Accessing inputs directly by name attribute because IDs are duplicated
-    const emailInput = document.getElementsByName('userInput')[0];
-    const passwordInput = document.getElementsByName('userInput')[1];
+    event.preventDefault(); // Prevent default form submission
+
+    // Access inputs by unique IDs
+    const emailInput = document.getElementById('emailInput');
+    const passwordInput = document.getElementById('passwordInput');
 
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    // Perform the fetch request to the Flask login endpoint
+    // Fetch request to the Flask login endpoint
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
@@ -24,17 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        // Handle HTTP errors
+        throw new Error(`HTTP error: ${response.status}`);
       }
       return response.json();
     })
     .then(data => {
       console.log('Login successful:', data);
-      alert('Login successful!');
+      // Redirect or update UI here
+      window.location.href = '/dashboard'; // Example redirect
     })
     .catch(error => {
       console.error('Login failed:', error);
-      alert('Login failed: ' + error.message);
+      // Display a user-friendly error message
+      document.getElementById('error-message').textContent = 'Login failed: Please check your credentials and try again.';
     });
   });
 });
